@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 851171462885.dkr.ecr.us-east-1.amazonaws.com
+  build:
+    commands:
+      - ./mvnw quarkus:add-extension -Dextensions="container-image-docker"
+      - ./mvnw clean package -Dquarkus.container-image.build=true
+  post_build:
+    commands:
+      - docker push 851171462885.dkr.ecr.us-east-1.amazonaws.com/cases
+      - printf '[{"name":createcase,"imageUri":"%s"}]' <ECR_URL> > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
