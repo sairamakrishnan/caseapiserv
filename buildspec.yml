@@ -12,10 +12,10 @@ phases:
     commands:
       - ./mvnw quarkus:add-extension -Dextensions="container-image-docker"
       - ./mvnw clean package -Dquarkus.container-image.build=true
-      - docker tag root/caseapiserv:latest 851171462885.dkr.ecr.us-east-1.amazonaws.com/cases
+      - docker tag root/caseapiserv:latest xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/cases
   post_build:
     commands:
       - docker push 851171462885.dkr.ecr.us-east-1.amazonaws.com/cases
-      - printf '[{"name":"createcase:4","imageUri":"%s"}]' 851171462885.dkr.ecr.us-east-1.amazonaws.com/cases > imagedefinitions.json
+      - printf '[{"name":"createcase:4","imageUri":"%s"}]' xxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/cases > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
