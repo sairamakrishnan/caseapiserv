@@ -15,7 +15,7 @@ phases:
       - docker tag root/caseapiserv:latest xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/cases
   post_build:
     commands:
-      - docker push 851171462885.dkr.ecr.us-east-1.amazonaws.com/cases
+      - docker push xxxxxxx.dkr.ecr.us-east-1.amazonaws.com/cases
       - printf '[{"name":"createcase:4","imageUri":"%s"}]' xxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/cases > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
